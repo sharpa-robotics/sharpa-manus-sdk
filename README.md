@@ -2,14 +2,14 @@
 
 This repository is used for integration and demonstration of SharpaWave with Manus MetaGloves Pro, including a Manus data acquisition client and hand retargeting examples.
 
-## Overview
+## 🚀 Overview
 
 The project is organized into two main components:
 
 - `client/`: Linux client based on Manus SDK (C++), responsible for glove data acquisition and publishing.
 - `retargeting/`: Retargeting and visualization modules (Python), responsible for mapping keypoints to SharpaWave joint space.
 
-## Repository Layout
+## 💼 Repository Layout
 
 ```text
 manus-sdk/
@@ -25,7 +25,7 @@ manus-sdk/
 └── README.md
 ```
 
-## Documentation
+## 📖 Documentation
 
 For complete usage instructions, installation steps, network configuration, calibration workflow, developer interfaces, and troubleshooting, refer to:
 
@@ -37,7 +37,7 @@ Recommended reading order:
 2. Calibration
 3. Developer Guide
 
-## Quick Entry
+## ▶️ Quick Entry
 
 For quick navigation, start with:
 
@@ -45,7 +45,7 @@ For quick navigation, start with:
 - Retargeting demo entry: `retargeting/retargeting_manus_demo_multiprocess.py`
 - Python environment: `retargeting/environment.yml`
 
-## License
+## 📌 License
 
 Repository license terms are provided in the `License` file.  
 Manus SDK components are subject to their official license terms and must be used accordingly.
