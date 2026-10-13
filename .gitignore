@@ -1,0 +1,65 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.pyre/
+.nox/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / Editor
+.idea/
+.specstory/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+client/log.txt
+
+# Build artifacts
+client/objects/
+client/SharpaManusClient.out
+client/CalibrationGUI/CalibrationGUI.out
+client/CalibrationGUI/objects/
+*.o
+*.d
+
+# Packaged shared libraries MUST be uploaded (do not add a blanket *.so rule):
+#   retargeting_alg_release_V5.0/include/hand_retargeting_optimizer.so
+#   retargeting_alg_release_V5.0/include/hand_kinematic_casadi.so
+#   retargeting_alg_release_V5.0/include/SharpaWaveSDK_*/lib/*.so
+#   retargeting_alg_release_V5.0/include/SharpaWaveSDK_*/python/sharpa/*.so
+#   client/ManusSDK/lib/*.so
+
+
+# Large local packages / archives (do not upload)
+*.pdf
+sharpa-manus-sdk-*.zip
+client/SharpaManusLinuxClient_cpp.zip
+client/calibration_backup/
+
+# Cursor / local tooling
+.cursorindexingignore
+**/.cursorindexingignore

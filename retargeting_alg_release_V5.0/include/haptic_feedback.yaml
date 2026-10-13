@@ -1,0 +1,52 @@
+# WAVE tactile -> Manus haptics. Restart Manus Client after edits; restart retargeting if bridge section changes.
+# Manus: export HAPTIC_FEEDBACK_CONFIG="/path/to/this/file"
+
+# Force thresholds (N). Hysteresis: enter_n / exit_n per tier.
+thresholds:
+  deadzone_n: 0.7
+  low:
+    enter_n: 1.0
+    exit_n: 0.8
+  mid:
+    enter_n: 5.5
+    exit_n: 5.0
+  high:
+    enter_n: 15.0
+    exit_n: 14.5
+
+# Tier PWM (square wave). amplitude: motor power 0~1; pulse_hz: rate; duty: on-time fraction.
+pwm:
+  low:
+    amplitude: 0.1
+    pulse_hz: 10.0
+    duty: 0.15
+  mid:
+    amplitude: 0.4
+    pulse_hz: 25.0
+    duty: 0.5
+  high:
+    amplitude: 0.9
+    pulse_hz: 40.0
+    duty: 0.5
+
+# Manus Client timing
+timing:
+  pwm_tick_hz: 50
+  min_ms_between_haptic_commands: 20
+  finger_phase_offset_sec: 0.02
+  debug_print_interval_sec: 1.0
+  zero_burst_on_all_off: 3  # zero commands when all fingers off
+
+# Synthetic tier test (Manus Client: J key)
+synthetic_test:
+  step_duration_sec: 2.0
+  low_force_n: 1.0
+  mid_force_n: 3.0
+  high_force_n: 6.0
+
+# Retargeting bridge (-haptics)
+bridge:
+  publish_hz: 30.0
+  debug_interval_sec: 1.0
+  finger_stale_timeout_sec: 0.08  # zero finger if no callback (anti-sticky)
+  zero_burst_count: 3             # zero ZMQ frames when hand goes all-off

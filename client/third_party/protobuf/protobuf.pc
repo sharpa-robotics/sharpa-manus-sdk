@@ -1,0 +1,13 @@
+prefix=/home/sharpa/ws/retargeting_manus/SharpaManusLinuxClient_linux_protobuf_3124/third_party/protobuf/install
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Protocol Buffers
+Description: Google's Data Interchange Format
+Version: 3.12.4
+Libs: -L${libdir} -lprotobuf 
+Libs.private: -lz 
+
+Cflags: -I${includedir} -pthread
+Conflicts: protobuf-lite

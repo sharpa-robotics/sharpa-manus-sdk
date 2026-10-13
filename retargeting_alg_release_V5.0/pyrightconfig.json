@@ -1,0 +1,3 @@
+{
+    "extraPaths": ["./include","./include/proto_hand"]
+}

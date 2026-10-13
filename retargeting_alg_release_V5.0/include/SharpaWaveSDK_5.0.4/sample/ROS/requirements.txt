@@ -1,0 +1,4 @@
+numpy==1.21.5
+opencv-python==4.5.4
+pyyaml
+protobuf==3.19.0

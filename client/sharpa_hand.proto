@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package proto;
+
+// ==================== Common Messages ====================
+message Stamp {
+    int32 sec = 1;
+    int32 nanosec = 2;
+}
+
+message Header {
+    Stamp stamp = 1;
+    string frame_id = 2;
+}
+
+message Point {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+}
+
+message Quaternion {
+    float w = 1;
+    float x = 2;
+    float y = 3;
+    float z = 4;
+}
+
+message Pose {
+    Point position = 1;
+    Quaternion orientation = 2;
+}
+
+message Joint {
+    repeated string name = 1;
+    repeated float position = 2; // in degree
+}
+
+// ================= Input/Output Messages ==================
+message MocapKeypoints{
+    Header header = 1;
+    repeated Pose left_mocap_pose = 2;
+    repeated Pose right_mocap_pose = 3;
+}
+
+message HandAction {
+    Header header = 1;
+    Joint joint_left = 2;
+    Joint joint_right = 3;
+}
+
+// WAVE tactile -> Manus haptics feedback (retargeting PUB, Manus Client SUB).
+// Per-finger resultant force magnitude from F6 (sqrt(Fx^2+Fy^2+Fz^2)), units: Newtons.
+// Finger order: Thumb, Index, Middle, Ring, Pinky (matches Manus VibrateFingers order).
+message HapticFeedback {
+    Header header = 1;
+    repeated float left_force_mag = 2;
+    repeated float right_force_mag = 3;
+}
+
+
+
+
+
+

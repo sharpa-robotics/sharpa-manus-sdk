@@ -1,0 +1,18 @@
+# environment.yml
+name: sharpa_retarget
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+    
+ # Use pip for packages not on conda-forge or for pure-python packages
+  - pip:
+      - numpy==1.26.4
+      - scipy==1.14.0
+      - protobuf==3.12.4
+      - pyzmq==26.2.0
+      - mujoco==3.3.6
+      - casadi==3.7.0 
+      - rich==14.0.0
+      - matplotlib==3.7.5

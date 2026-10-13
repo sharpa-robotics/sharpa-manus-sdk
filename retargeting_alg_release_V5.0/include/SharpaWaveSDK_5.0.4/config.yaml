@@ -1,0 +1,52 @@
+localhost: 'tcp://127.0.0.1'
+use_local_server: True
+ui_ip: 'tcp://192.168.1.168'
+sdk_ip: 'tcp://192.168.1.81'
+robot_ip: 'tcp://192.168.3.66'
+ipc_address: 'ipc:///tmp/sharpa_ipc'
+calib_path: ''
+sdk_version: '5.0.4'
+erase_flash: 1
+joint_limit_path: ''
+force_joint_limit: False
+UDP_binding_SN: False
+auto_discover: True
+ignore_error_code: []
+skip_empty_sn: True
+calibration:
+  joint_pos_calib_current_coef: 0.8
+  joint_pos_calib_speed_coeff: 0.1
+  joint_pos_calib_timeout: 3
+  joint_pos_calib_tolerance: 0.3
+  joint_pos_calib_joint_pos: [0, 0, 0, 0, 0, 90, 0, 0, 0, 90, 0, 0, 0, 90, 0, 0, 0, 0, 90, 0, 0, 0]
+tactile:
+  skip: False
+  host_port: 50001
+  host_ip: '192.168.10.240'
+  fps: 30
+  deform_multi: 1
+  rpc_address: 'tcp://127.0.0.1:48009' # docker tactile RPC (ZMQ_RPC_BIND default)
+  rpc_timeout_ms: 120000
+  calib_num_frames: 20
+  calib_max_retry: 10
+
+port:
+  SDK_PUB_TACTILE: 48008
+  SDK_PUB_DEBUG: 48017 # SDK PUB debug info
+  SDK_PUB_STATE: 48018 # SDK to UI, WIN_ARM...
+  SDK_PUB_ACTION: 48019 # SDK to UI, robot
+  SDK_PUB_HEARTBEAT: 48020 # SDK "broadcast" device info
+  SDK_PULL: 48023 # msg to SharpaWIN
+  SDK_RES: 48025 # UI request SDK
+
+  WIN_TELE_PUB: 48028 # msg to SDK
+  WIN_TELE_RES: 48029 # SDK request WIN_TELEoperation
+  WIN_TELE_HEARTBEAT: 48030
+
+  VR_PUB: 48044 # robot image to VR
+  VR_RES: 48045 # SDK request VR
+
+  ROBOT_PUB_STATE: 48047 # robot to SDK
+  ROBOT_PUB_ACTION: 48050 # robot to SDK
+  ROBOT_RES: 48051 # SDK request robot
+

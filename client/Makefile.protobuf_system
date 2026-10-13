@@ -1,0 +1,72 @@
+CXX      := g++
+
+#CXXFLAGS := -pedantic-errors -Wall -Wextra -Werror -g --std=c++17
+
+PKG_CONFIG_PATH := /usr/lib/x86_64-linux-gnu/pkgconfig
+PROTOBUF_CFLAGS := $(shell PKG_CONFIG_PATH=$(PKG_CONFIG_PATH) pkg-config --cflags protobuf)
+PROTOBUF_LIBS   := $(shell PKG_CONFIG_PATH=$(PKG_CONFIG_PATH) pkg-config --libs   protobuf)
+PROTOC := /usr/bin/protoc
+CXXFLAGS := -g --std=c++17 -isystem /usr/include/google
+LDFLAGS  := -L./ManusSDK/lib -lManusSDK_Integrated -lncurses -lzmq -Wl,-rpath=./ManusSDK/lib
+CXXFLAGS += $(PROTOBUF_CFLAGS)
+LDFLAGS  += $(PROTOBUF_LIBS)
+BUILD    := ./
+OBJ_DIR  := $(BUILD)/objects
+APP_DIR  := $(BUILD)
+TARGET   := SharpaManusClient.out
+INCLUDE  := -I./ManusSDK/include -I/usr/include/eigen3
+SRC      :=  \
+   $(wildcard *.cpp) \
+   $(wildcard *.cc)
+
+OBJECTS  := $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(filter %.cpp,$(SRC))) \
+            $(patsubst %.cc,$(OBJ_DIR)/%.o,$(filter %.cc,$(SRC)))
+DEPENDENCIES \
+         := $(OBJECTS:.o=.d)
+
+all: build $(APP_DIR)/$(TARGET)
+
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -MMD -o $@
+
+$(OBJ_DIR)/%.o: %.cc
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -MMD -o $@
+
+$(APP_DIR)/$(TARGET): $(OBJECTS)
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) -o $(APP_DIR)/$(TARGET) $^ $(LDFLAGS)
+	
+-include $(DEPENDENCIES)
+
+.PHONY: all build clean debug release info
+
+build:
+	@mkdir -p $(APP_DIR)
+	@mkdir -p $(OBJ_DIR)
+
+debug: CXXFLAGS += -DDEBUG -g
+debug: all
+
+release: CXXFLAGS += -g
+release: all
+
+clean:
+	-@rm $(TARGET)
+	-@rm -rvf $(OBJ_DIR)/*
+
+show-protobuf:
+	@echo "---- Protobuf include path ----"
+	@pkg-config --cflags protobuf
+	@echo "---- Protobuf library path ----"
+	@pkg-config --libs protobuf
+	@echo "---- Linked libprotobuf version ----"
+	@pkg-config --modversion protobuf || echo "pkg-config failed, fallback to ldconfig"
+	@ldconfig -p | grep libprotobuf || true
+info:
+	@echo "[*] Application dir: ${APP_DIR}     "
+	@echo "[*] Object dir:      ${OBJ_DIR}     "
+	@echo "[*] Sources:         ${SRC}         "
+	@echo "[*] Objects:         ${OBJECTS}     "
+	@echo "[*] Dependencies:    ${DEPENDENCIES}"

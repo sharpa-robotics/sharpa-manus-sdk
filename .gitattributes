@@ -1,0 +1,2 @@
+client/ManusSDK/lib/*.so filter=lfs diff=lfs merge=lfs -text
+client/third_party/protobuf/src/.libs/*.a filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,21 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Do NOT ignore *.so here — ManusSDK/lib/*.so must be shipped with the client.
+
+# Object files
+objects/
+*.o
+*.d
+
+# Executables (built locally; SDK .so libraries above stay tracked)
+*.out
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

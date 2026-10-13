@@ -1,0 +1,16 @@
+# 检查电脑上安装的所有protoc版本 如果有3.11.2或者更老的版本，可以暂时移除
+for p in $(which -a protoc); do echo -n "$p  "; "$p" --version; done
+
+# 例如移除3.11.2的protobuf和protoc：
+
+sudo mv /usr/local/include/google /usr/local/include/google.backup
+sudo mv /usr/local/bin/protoc /usr/local/bin/protoc_bak
+
+# 重新编译sharpa_hand.proto
+protoc --cpp_out=. sharpa_hand.proto
+make clean
+make all
+ 
+# 恢复3.11.2 protobuf的配置（不会影响程序运行）
+sudo mv /usr/local/include/google.backup /usr/local/include/google
+sudo mv /usr/local/bin/protoc_bak /usr/local/bin/protoc

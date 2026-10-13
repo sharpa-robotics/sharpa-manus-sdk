@@ -1,0 +1,27 @@
+# Hand Retargeting System Requirements
+# Hand retargeting system dependencies
+
+# Core numerical computation libraries
+numpy==1.26.4
+scipy==1.14.0
+
+# CasADi optimization framework
+casadi==3.7.0
+
+# ZMQ communication library
+pyzmq==26.2.0
+
+# Protobuf serialization
+protobuf==3.12.4
+
+# Terminal text display
+rich==14.0.0
+
+# Data visualization (optional, for plot functionality)
+matplotlib==3.7.5
+
+# System dependencies (Linux)
+# Note: The following packages need to be installed via system package manager
+# sudo apt-get install libzmq3-dev
+# sudo apt-get install libblas-dev liblapack-dev
+# sudo apt-get install libgfortran5 
